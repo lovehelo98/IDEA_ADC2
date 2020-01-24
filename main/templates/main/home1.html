@@ -1,0 +1,59 @@
+{% extends 'main/header.html' %}
+
+{% block content %}
+
+<form class="search-bar" method="get">
+    <input type="text" name="q" placeholder="Search Here" value="{{query}}">
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Idea</th>
+            <th>Category</th>
+            <th>Date</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    {% if ideas %}
+    <tbody>
+        {% for i in ideas %}
+        <tr>
+            <td>{{i.ideaPeacher}}</td>
+            <td>{{i.Post_idea}}</td>
+            <td>{% for c in i.category.all %}
+                {{c.category}}
+                {% endfor %}</td>
+            
+            <td>{{i.date_created}}</td>
+            <td>
+                <form method="POST" action="{% url 'edit_idea' i.pk %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary btn-sm"> edit </button>
+                </form>
+            </td>
+            <td>
+                <form method="POST" action="{% url 'delete_idea' i.pk %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary btn-sm"> Delete </button>
+                </form>
+
+            </td>
+        </tr>
+        {% endfor%}
+        {% else %}
+            <div class="container">
+                <div class="row">
+                    <div class="card-body">
+                    <h1 class="card-title"> No Result!! </h1>
+
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+        
+    </tbody>
+</table>
+{% endblock content %}
