@@ -1,0 +1,18 @@
+{% extends 'main/header.html' %}
+{% block content %}
+<form method="post"  action="{% url 'updateidea' share.pk %}">
+  {% csrf_token %}
+
+<div class="row">
+      <div class="input-field col s12">
+        <textarea id="textarea1" class="materialize-textarea" name="idea" >{{share.Post_idea}}</textarea>
+        <label for="textarea1" >IDEA</label>
+      </div>
+</div>
+<div>
+
+<button class="btn waves-effect waves-light" type="submit" name="action">edit</button>
+</div>
+</form>
+
+{% endblock %}

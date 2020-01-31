@@ -1,0 +1,28 @@
+{% extends 'main/header.html' %}
+{% block content %}
+<form method = "post", action="submitidea/">
+  {% csrf_token %}
+<div style="width: 17%; margin-bottom: 20px; margin-top: 10px;">
+<label>Category</label>
+<select class="browser-default" name="dropdown">
+  <option value="" disabled selected>Choose your category</option>
+  <option value="Technology">Technology</option>
+  <option value="Transport">Transport</option>
+  <option value="Vehicle">Vehicle</option>
+  <option value="Health">Health</option>
+  <option value="Education">Education</option>
+</select>
+</div>
+<div class="row">
+<div class="row">
+      <div class="input-field col s12">
+        <textarea id="textarea1" class="materialize-textarea" name="idea"></textarea>
+        <label for="textarea1">IDEA</label>
+      </div>
+    </div>
+</div>
+<button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
+
+</form>
+
+{% endblock %}
