@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from django.http import HttpResponse, JsonResponse
 import json 
 from django.views.decorators.csrf import csrf_exempt
+from .decorators import unauthenticated_user, admin_only, allowed_users
 
 
 # Create your views here.
@@ -44,21 +45,23 @@ def logout_request(request):
     logout(request)
     return redirect("/login")
 
+@unauthenticated_user
 def login_request(request):
-    if request.method == "POST":
-        form = AuthenticationForm(request, data=request.POST )
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request , user)
-                return redirect("/home")
-            else:
-                messages.error (request, "Invalid username or password")
-    
-    form = AuthenticationForm()
-    return render (request, "main/login.html", {"form":form})
+
+	if request.method == 'POST':
+		username = request.POST.get('username')
+		password =request.POST.get('password')
+
+		user = authenticate(request, username=username, password=password)
+
+		if user is not None:
+			login(request, user)
+			return redirect('/home')
+		else:
+			messages.info(request, 'Username OR password is incorrect')
+
+	context = {}
+	return render(request, 'main/login.html', context)
     
 
 def delete_idea(request, pk):
