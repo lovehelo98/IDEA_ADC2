@@ -1,15 +1,13 @@
 {% extends 'main/header.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
-<center><h3>Create Account</h3></center> 
-<form method = "POST">
-{% csrf_token %}
-{{form.as_p}}
-{{ profile_form.as_p}}
-
-<button class="btn waves-effect waves-light" type="submit" name="action">Submit</button>
-
-
+<form method="POST">
+    {% csrf_token %}
+    {{form|crispy}}
+    {{ profile_form|crispy}}
+    <button type="Submit" class="btn btn-primary">Signup</button>
 </form>
 
 {% endblock %}

@@ -1,18 +1,14 @@
 {% extends 'main/header.html' %}
 {% block content %}
-<form method="post"  action="{% url 'updateidea' share.pk %}">
+<form method="post" action="{% url 'updateidea' share.pk %}">
   {% csrf_token %}
-
-<div class="row">
-      <div class="input-field col s12">
-        <textarea id="textarea1" class="materialize-textarea" name="idea" >{{share.Post_idea}}</textarea>
-        <label for="textarea1" >IDEA</label>
-      </div>
-</div>
-<div>
-
-<button class="btn waves-effect waves-light" type="submit" name="action">edit</button>
-</div>
+  <div class="input-group" style="margin-top: 2rem;">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Idea</span>
+    </div>
+    <textarea class="form-control" aria-label="With textarea" name="idea">{{share.Post_idea}}</textarea>
+    <button type="submit" class="btn btn-success">Update</button>
+  </div>
 </form>
 
 {% endblock %}
