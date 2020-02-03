@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect 
-from .forms import NewForm
+from .forms import NewForm, UserProfileForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
@@ -24,12 +24,20 @@ def homepage(request):
 def register(request):
     if request.method == "POST":
         form = NewForm(request.POST)
-        if form.is_valid():
-            form.save()
-        return redirect("/login")
+        profile_form = UserProfileForm(request.POST)
+        
+        if form.is_valid() and profile_form.is_valid():
+            user = form.save()
+            profile = profile_form.save(commit=False)
+            profile.user = user
+
+            profile.save()
+            return redirect("/login")
     else:
         form = NewForm()
-    return render (request, "main/register.html",{"form":form})
+        profile_form = UserProfileForm()
+    context = {'form': form, 'profile_form': profile_form}
+    return render (request, "main/register.html", context)
 
 
 def logout_request(request):

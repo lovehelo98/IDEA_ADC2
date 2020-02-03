@@ -6,6 +6,19 @@ from django.db import models
 from datetime import datetime
 from django.utils import timezone
 
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    location = models.CharField(max_length=30)
+    age = models.IntegerField()
+    types = (
+        ('IDEA PEACHER','IDEA PEACHER'),
+        ('SPONSOR','SPONSOR'),
+    )
+    Type = models.CharField(max_length=30, null=False, choices=types, default=None)
+
+    def __str__(self):
+        return self.user.username
+
 
 class category(models.Model):
     category   = models.CharField(max_length=100)

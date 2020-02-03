@@ -25,7 +25,7 @@ def submitidea(request):
                 post.save()
                 post.category.add(rp)
         
-                return redirect ("/idea")
+                return redirect ("/home")
         
         else : 
 
