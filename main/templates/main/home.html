@@ -1,6 +1,8 @@
 {% extends 'main/header.html' %}
 {% block content %}
 
+{% load crispy_forms_tags %}
+
 {% if ideas %}
 <div>
   {% for i in ideas %}
@@ -13,6 +15,32 @@
       <a href="{% url 'delete_idea' i.pk %}" class="card-link">Delete</a>
       <a href="{% url 'edit_idea' i.pk %}" class="card-link">Edit</a>
       <p class="card-text">by {{i.ideaPeacher}} {{i.date_created}}</p>
+      {% if comments %}
+      <div>
+        {% for c in comments %}
+        
+        
+        <p class="card-text">{{c.public_comment}}<span>{{i.date_created}}</span></p>
+
+
+        
+
+
+        {% else %}
+        happy
+
+        {%  endfor %}
+
+        {% endif %}
+
+        
+      </div>
+      <form method='GET', action='submitcomment/'>
+        <div class="input-group" style="margin-top: 2rem; margin-bottom: 2rem;">
+          <textarea class="form-control" aria-label="With textarea" name="comment" placeholder='comment'></textarea>
+        </div>
+        <button type="Submit" id='commentbtn' class="btn " style="background-color: green;border-radius:20px;">Comment</button>           
+      </form>
     </div>
   </div>
   {% endfor %}

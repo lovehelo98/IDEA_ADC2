@@ -3,13 +3,14 @@ from .forms import NewForm, UserProfileForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib import messages
-from .models import idea 
+from .models import idea ,Public
 from django.db.models import Q
 from django.contrib.auth.models import User
 from django.http import HttpResponse, JsonResponse
 import json 
 from django.views.decorators.csrf import csrf_exempt
 from .decorators import unauthenticated_user, admin_only, allowed_users
+from datetime import datetime
 
 
 # Create your views here.
@@ -116,7 +117,32 @@ def update_data_json(request, pk):
         return JsonResponse({"message":"Successful!!"})
 
     
-    
+def submitcomment(request):
+        if request.method=="get":
+            i = request.POST.get("comment")
+            u = request.user
+            d = datetime.now()
+            f = request.idea
+
+            post = Public(public_comment=i, date_created=d, post=f ,by=u,)
+            post.save()
+            
+
+            return redirect ("/home")
+        
+        else : 
+
+            
+            i = request.POST.get("comment")
+            u = request.user
+            d = datetime.now()
+            f = request.idea
+
+            post = Public(public_comment=i, date_created=d, post=f ,by=u,)
+            post.save()
+
+            return redirect ("/home")
+
 
     
 

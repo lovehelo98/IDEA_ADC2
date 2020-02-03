@@ -3,7 +3,7 @@ from main.models import idea , category
 from django.utils import timezone 
 from datetime import datetime
 from django.views.generic.edit import UpdateView
-from main.models import idea
+from main.models import idea, Public
 
 
   
@@ -46,7 +46,6 @@ def updateidea(request, pk):
     i.save()
     return redirect("/home")
        
-
 
 
 
