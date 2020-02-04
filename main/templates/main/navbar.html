@@ -13,7 +13,7 @@
         <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item active">
-        <a class="nav-link" href="#">{{user.username}}</a>
+        <a class="nav-link" href="/profile">{{user.username}}</a>
       </li>
       <li class="nav-item active">
         <a class="nav-link" href="/idea">Post</a>
@@ -31,9 +31,21 @@
     <li class="nav-item active">
       <a class="nav-link" href="/register">Register </a>
     </li>
-    <li class="nav-item active">
-      <a class="nav-link" href="/login">Login</a>
-    </li>
+    <div >
+      <form method="POST" action="login/" >
+        {% csrf_token %}
+            <div style='float:right'>
+              <input type="text" name="username" placeholder="Username..." >
+              <input type="password" name="password" placeholder="Password..." >
+              <button style="border-radius:20px;background-color:dodgerblue;color:white;border:none">log ln</button>
+            </div>
+        
+        {% for message in messages %}
+        <p id="messages">{{message}}</p>
+        {% endfor %}
+      </form>
+
+    </div>
     {% endif %}
 
   </div>
