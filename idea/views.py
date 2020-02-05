@@ -54,6 +54,3 @@ def updateidea(request, pk):
 
 
 
-
-
-

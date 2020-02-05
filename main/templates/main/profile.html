@@ -1,18 +1,20 @@
 {% extends 'main/header.html' %}
 {% block content %}
 
-<div class='container'>
+<div class='profile'>
   <h2>profile</h2>
   <div>
+    <img src="{{user.userprofile.image.url}}" alt="{{user.name}}">
     <p>username:     {{user}}</p>
     <p>First name:   {{user.first_name}}</p>
     <p>Last Name:    {{user.last_name}}</p>
     <p>Email:        {{user.email}}</p>
-    <p>Age:          {{user.UserProfile.age}}</p>
-
+    <p>Age:          {{user.userprofile.age}}</p>
   </div>
-</div>
+<div>
+  
 
+  
 
 
 {% endblock %}

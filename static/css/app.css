@@ -1,0 +1,64 @@
+body{
+  background-color:whitesmoke;
+  font-family:helvetica , sans-serif;
+}
+footer{
+  background-color:lightgrey;
+  height:70px;
+}
+
+
+footer #copy{
+    
+      text-align:center;
+      color:white;
+      font-size:30px;
+      transition:all .9 ease;  
+    
+}
+footer #copy:hover{
+  color:blueviolet;
+  cursor: pointer;
+  
+}
+
+#commentbtn:hover{
+  background-color:blue;
+}
+.btn{
+  background-color:#4ea371;
+  border-radius:20px;
+  border:none;
+  margin-bottom:30px;
+  font-size:20px;
+  color:white;
+}
+.btn:hover{
+  background-color:grey!important;
+  
+  font-size:20px;
+  transition:all .9 ease;
+  color:#4ea371;
+}
+#login_form{
+  float:right;
+}
+
+#idealist{
+  margin-left:25%;
+  margin-right:20%;
+  margin-bottom:2%;
+  background-color:rgb(228, 226, 226) ;
+  border:1px; 
+  border-radius:20px;
+  color:black;
+  
+}
+.idea_box{
+  padding:7%;
+  
+}
+.navbar{
+  background-color:lightgrey !important;
+  
+}

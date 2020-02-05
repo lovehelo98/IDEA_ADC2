@@ -17,11 +17,15 @@ from django.views.generic import RedirectView
 # Create your views here.
 def homepage(request):
     i = idea.objects.all()
+    
+
     query = ""
     if request.GET:
         query = request.GET['q']
         i = get_data_queryset(str(query))
+        
     return render(request,"main/home.html", context={"ideas":i})
+    
 
 def profile(request):
     i = UserProfile.objects.all()
@@ -65,7 +69,10 @@ def login_request(request):
 
 		user = authenticate(request, username=username, password=password)
 
+        
+
 		if user is not None:
+            
 			login(request, user)
 			return redirect('/home')
 		else:
@@ -126,10 +133,11 @@ def update_data_json(request, pk):
             i.save()
         return JsonResponse({"message":"Successful!!"})
 
-    
-def comment(request):
+
+def submitcomment(request):
         if request.method=="post":
-                i = request.post.get("comment")
+                i = request.post.get("home")
+
                 u = request.user
                 d = datetime.now()
                 f = request.idea
@@ -139,17 +147,7 @@ def comment(request):
                 
                 return redirect ("/home")
         
-        else : 
-                i = request.post.get("comment")
-                u = request.user
-                d = datetime.now()
-                f = request.idea
-
-                post = Public(public_comment=i, date_created=d, post=f ,by=u,)
-                post.save()
-
-                return redirect ("/home")
-
+       
     
 
 class PostLikeToogle(RedirectView):
