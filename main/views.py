@@ -127,9 +127,39 @@ def update_data_json(request, pk):
         return JsonResponse({"message":"Successful!!"})
 
     
+def comment(request):
+        if request.method=="post":
+                i = request.post.get("comment")
+                u = request.user
+                d = datetime.now()
+                f = request.idea
 
+                post = Public(public_comment=i, date_created=d, post=f ,by=u,)
+                post.save()
+                
+                return redirect ("/home")
+        
+        else : 
+                i = request.post.get("comment")
+                u = request.user
+                d = datetime.now()
+                f = request.idea
+
+                post = Public(public_comment=i, date_created=d, post=f ,by=u,)
+                post.save()
+
+                return redirect ("/home")
 
     
 
+class PostLikeToogle(RedirectView):
+        def get_redirect_url(self, *args, **kwargs):
+                slug = self.kwargs.get('slug')
+                obj = get_object_or_404(post, slug=slug)
+                url_ = obj.get_absolute_url()
+                user = self.request.user
+                if user.is_authenticated():
+                        obj.like.add(user)
+                return url_         
 
     
