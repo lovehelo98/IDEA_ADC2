@@ -32,12 +32,12 @@
       <a class="nav-link" href="/register">Register </a>
     </li>
     <div >
-      <form method="POST" action="login/" >
+      <form method="POST" action="{% url 'login' %}" >
         {% csrf_token %}
             <div style='float:right'>
               <input type="text" name="username" placeholder="Username..." >
               <input type="password" name="password" placeholder="Password..." >
-              <button style="border-radius:20px;background-color:dodgerblue;color:white;border:none">log ln</button>
+              <button style="border-radius:20px;background-color:dodgerblue;color:white;border:none" value="Login" type="submit">log ln</button>
             </div>
         
         {% for message in messages %}
