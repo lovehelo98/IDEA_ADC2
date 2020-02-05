@@ -7,7 +7,7 @@
 
 
 <div>
-  <form method="post" , action="submitidea/">
+  <form method="post" , action="">
     {% csrf_token %}
     <select class="custom-select" name="dropdown">
       <option selected>Choose Category</option>
@@ -30,7 +30,7 @@
   {% for i in ideas %}
   <div class="card" style="width: 18rem; margin-bottom: 2rem; margin-top: 1rem; ">
     <div class="card-body">
-      <p style="font-size:13px;margin-top:-20px"><a href="/profile">{{i.ideaPeacher}} </a><Span style="font-size:9px;float:right;">{{i.date_created}}</Span></p>
+      <p style="font-size:13px;margin-top:-20px">{{i.ideaPeacher}} <Span style="font-size:9px;float:right;">{{i.date_created}}</Span></p>
       <h5 class="card-title">{% for c in i.category.all %}
         {{c.category}}{% endfor %}</h5>
       <p class="card-text">{{i.Post_idea}}</p>

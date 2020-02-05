@@ -27,6 +27,7 @@ footer #copy:hover{
   border:none;
   margin-bottom:30px;
   font-size:20px;
+  color:white;
 }
 .btn:hover{
   background-color:lightgrey !important;
