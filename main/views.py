@@ -22,6 +22,7 @@ def homepage(request):
         query = request.GET['q']
         i = get_data_queryset(str(query))
     return render(request,"main/home.html", context={"ideas":i})
+    
 
 def profile(request):
     i = UserProfile.objects.all()
@@ -65,7 +66,10 @@ def login_request(request):
 
 		user = authenticate(request, username=username, password=password)
 
+        
+
 		if user is not None:
+            
 			login(request, user)
 			return redirect('/home')
 		else:

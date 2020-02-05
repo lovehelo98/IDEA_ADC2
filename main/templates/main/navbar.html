@@ -1,3 +1,5 @@
+
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <a class="navbar-brand" href="#">IDEA</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -28,13 +30,11 @@
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
     {% else %}
-    <li class="nav-item active">
-      <a class="nav-link" href="/register">Register </a>
-    </li>
-    <div >
+    
+    <div style="margin-left:800px" >
       <form method="POST" action="login/" >
         {% csrf_token %}
-            <div style='float:right'>
+            <div id ="login_form"style='float:right'>
               <input type="text" name="username" placeholder="Username..." >
               <input type="password" name="password" placeholder="Password..." >
               <button style="border-radius:20px;background-color:dodgerblue;color:white;border:none">log ln</button>

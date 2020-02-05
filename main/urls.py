@@ -4,6 +4,10 @@ from django.conf.urls import url
 
 from idea.views import PostLikeToogle 
 
+
+from django.conf.urls.static import static
+from django.conf import settings
+
 appname =[
     'idea'
 ]
@@ -26,3 +30,5 @@ urlpatterns = [
     path('updateapi/<int:pk>/', views.update_data_json,name='updatejson'),
     
 ] 
+
+(static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT))

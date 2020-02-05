@@ -33,3 +33,5 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('location', 'age', 'Type')
+
+

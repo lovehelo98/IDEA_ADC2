@@ -30,23 +30,23 @@
   {% for i in ideas %}
   <div class="card" style="width: 18rem; margin-bottom: 2rem; margin-top: 1rem; ">
     <div class="card-body">
-      <p style="font-size:13px;margin-top:-20px">{{i.ideaPeacher}} <Span style="font-size:9px;float:right;">{{i.date_created}}</Span></p>
+      <p style="font-size:13px;margin-top:-20px"><a href="/profile">{{i.ideaPeacher}} </a><Span style="font-size:9px;float:right;">{{i.date_created}}</Span></p>
       <h5 class="card-title">{% for c in i.category.all %}
         {{c.category}}{% endfor %}</h5>
       <p class="card-text">{{i.Post_idea}}</p>
       <a href="{% url 'delete_idea' i.pk %}" class="card-link">Delete</a>
       <a href="{% url 'edit_idea' i.pk %}" class="card-link">Edit</a>
       <p>{{instance.like.count}}<a href='{{instance.get_like_url}}'>like</a></p> 
-      {% if comments %}
-     
+      <p>{{public.count}} Comment</p>
         {%  for b in comments %}
+
         
           <p>{{b.public_comment}}  <span>{{b.by}}</span></p>
         
           {% endfor %}
-          {% else %}
           
-          {% endif %}
+          
+          
         
       
       <form method='Post', action='submitcomment/'>
