@@ -1,5 +1,6 @@
 body{
-  background-color:whitesmoke
+  background-color:whitesmoke;
+  font-family:helvetica , sans-serif;
 }
 footer{
   background-color:lightgrey;
@@ -33,7 +34,7 @@ footer #copy:hover{
   color:white;
 }
 .btn:hover{
-  background-color:grey !important;
+  background-color:grey!important;
   
   font-size:20px;
   transition:all .9 ease;
@@ -47,12 +48,17 @@ footer #copy:hover{
   margin-left:25%;
   margin-right:20%;
   margin-bottom:2%;
-  background-color:lightgrey;
+  background-color:rgb(228, 226, 226) ;
   border:1px; 
   border-radius:20px;
+  color:black;
   
 }
 .idea_box{
   padding:7%;
+  
+}
+.navbar{
+  background-color:lightgrey !important;
   
 }
