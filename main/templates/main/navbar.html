@@ -30,14 +30,13 @@
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
     {% else %}
-    
     <div style="margin-left:800px" >
-      <form method="POST" action="login/" >
-        {% csrf_token %}
+      <form method="POST" action="{% url 'login' %}" >
+          {% csrf_token %}
             <div id ="login_form"style='float:right'>
               <input type="text" name="username" placeholder="Username..." >
               <input type="password" name="password" placeholder="Password..." >
-              <button style="border-radius:20px;background-color:dodgerblue;color:white;border:none">log ln</button>
+              <button style="border-radius:20px;background-color:dodgerblue;color:white;border:none" value="Login" type="submit">log ln</button>
             </div>
         
         {% for message in messages %}
