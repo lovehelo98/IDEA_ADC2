@@ -17,10 +17,13 @@ from django.views.generic import RedirectView
 # Create your views here.
 def homepage(request):
     i = idea.objects.all()
+    
+
     query = ""
     if request.GET:
         query = request.GET['q']
         i = get_data_queryset(str(query))
+        
     return render(request,"main/home.html", context={"ideas":i})
     
 
@@ -130,7 +133,20 @@ def update_data_json(request, pk):
             i.save()
         return JsonResponse({"message":"Successful!!"})
 
-    
+def submitcomment(request):
+        if request.method=="post":
+                i = request.post.get("home")
+                u = request.user
+                d = datetime.now()
+                f = request.idea
+
+                post = Public(public_comment=i, date_created=d, post=f ,by=u,)
+                post.save()
+                
+                return redirect ("/home")
+        
+        else : 
+                return redirect('/home')   
 
 
     

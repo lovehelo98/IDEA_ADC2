@@ -28,8 +28,8 @@
 <div>
 
   {% for i in ideas %}
-  <div class="card" style="width: 18rem; margin-bottom: 2rem; margin-top: 1rem; ">
-    <div class="card-body">
+  <div id='idealist'  >
+    <div class='idea_box'>
       <p style="font-size:13px;margin-top:-20px">{{i.ideaPeacher}} <Span style="font-size:9px;float:right;">{{i.date_created}}</Span></p>
       <h5 class="card-title">{% for c in i.category.all %}
         {{c.category}}{% endfor %}</h5>
@@ -49,7 +49,7 @@
           
         
       
-      <form method='Post', action='submitcomment/'>
+      <form method='Post', action="">
         {% csrf_token %}
         <div class="input-group" style="margin-top: 2rem; margin-bottom: 2rem;">
           <textarea class="form-control" aria-label="With textarea" name="comment" placeholder='comment'></textarea>
