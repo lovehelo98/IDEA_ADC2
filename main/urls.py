@@ -27,7 +27,7 @@ urlpatterns = [
     path("edit_idea/<int:pk>/", views.edit_idea, name="edit_idea"),
     path('list/',views.show_all_data, name='showdata'),
     path('updateapi/<int:pk>/', views.update_data_json,name='updatejson'),
-    path("comment/<int:pk>/", views.comment, name="comment"),
+    #path("comment/<int:pk>/", views.comment, name="comment"),
     
 ] 
 
