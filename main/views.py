@@ -13,15 +13,22 @@ from .decorators import unauthenticated_user, admin_only, allowed_users
 from datetime import datetime
 from django.views.generic import RedirectView
 
+from django.core.paginator import Paginator
+
 
 # Create your views here.
 def homepage(request):
     i = idea.objects.all()
     b = Public.objects.all()
-    query = ""
-    if request.GET:
-        query = request.GET['q']
-        i = get_data_queryset(str(query))
+    paginator = Paginator(i ,3)
+    page = request.GET.get('page')
+
+    i = paginator.get_page(page)
+
+    # query = ""
+    # if request.GET:
+    #     query = request.GET['q']
+    #     i = get_data_queryset(str(query))
 
     return render(request, "main/home.html", context={"ideas": i, "comments":b})
 

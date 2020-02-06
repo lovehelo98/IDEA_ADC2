@@ -73,5 +73,35 @@
     </div>
   </div>
   {% endif %}
+  <div id='paginator'>
+      {% if ideas.has_previous %}
+      <a href="?page={{ideas.previous_page_number}}"> << </a>
+
+      {%endif%}
+
+
+    {%for num in ideas.paginator.page_range%}
+    {% if ideas.number == num %}
+
+     <span id="pag_number"> 
+
+        <strong>{{num}}</strong>
+
+        {% elif num > ideas.number|add:'-2'  and num < ideas.number|add:'2'%}
+        
+        <span id='subnumber'>
+          <a href="?page={{num}}">{{num}}</a>
+        </span>
+        
+        {%endif%}
+     </span>
+     
+
+    {%endfor%} 
+    {% if ideas.has_next %}
+      <a href="?page={{ideas.next_page_number}}"> >> </a>
+
+      {%endif%} 
+</div>
 </div>
 {% endblock %}
