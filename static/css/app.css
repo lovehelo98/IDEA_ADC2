@@ -62,3 +62,13 @@ footer #copy:hover{
   background-color:lightgrey !important;
   
 }
+
+#comment_area{
+  background-color:white;
+  border-radius:30px;
+  
+}
+#comment_part{
+  margin-left:20px;
+
+}
