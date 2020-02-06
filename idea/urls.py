@@ -11,12 +11,12 @@ appname = [
 urlpatterns = [
     path ('', views.post, name='post'),
     path("idea/", views.post, name="post"),
-# <<<<<<< HEAD
-#     path('submitidea/', views.submitidea, name='idea'),
-# =======
+
+    #path('submitidea/', views.submitidea, name='idea'),
+
     
-#     path('/submitcomment/', views.submitcomment, name='comment'),
-# >>>>>>> 078fe947e42154a8da6611e8c60527b3707cc0a1
+    #path('/submitcomment/', views.submitcomment, name='comment'),
+
     path('updateidea/<int:pk>/', views.updateidea, name='updateidea'),
 ]
 
