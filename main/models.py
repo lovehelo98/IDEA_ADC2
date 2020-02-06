@@ -49,14 +49,14 @@ class idea(models.Model):
 
 
 class Public(models.Model):
-    public_comment = models.TextField()
+    comment = models.TextField()
     date_created = models.DateTimeField(default=datetime.now()) 
-    post = models.ForeignKey(idea, on_delete=models.CASCADE, default=None)
+    on_post = models.ForeignKey(idea, on_delete=models.CASCADE, default=None)
     by = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
    
     
     def __str__(self):
-        return self.public_comment
+        return self.comment
 
 
 class message(models.Model):

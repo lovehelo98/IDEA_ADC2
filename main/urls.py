@@ -1,6 +1,7 @@
 from django.urls import path
 from .import views
 from django.conf.urls import url
+from idea.views import submitidea
 
 
 
@@ -18,8 +19,7 @@ urlpatterns = [
     path ("home/", views.homepage, name='homepage'),
     path ('register/', views.register, name='register'),
     path('profile/', views.profile, name='profile'),
-    
-
+    path("insert/", submitidea , name='insert'),
     
     path ('logout/', views.logout_request, name='logout' ),
     path("login/", views.login_request, name="login"),

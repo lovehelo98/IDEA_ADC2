@@ -12,7 +12,7 @@ urlpatterns = [
     path ('', views.post, name='post'),
     path("idea/", views.post, name="post"),
 # <<<<<<< HEAD
-#     path('submitidea/', views.submitidea, name='idea'),
+    path('submitidea/', views.submitidea, name='idea'),
 # =======
     
 #     path('/submitcomment/', views.submitcomment, name='comment'),
