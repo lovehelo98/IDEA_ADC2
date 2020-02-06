@@ -7,7 +7,7 @@
 
 
 <div>
-  <form method="post" , action="">
+  <form method="post" , action="{% url 'insert' %}">
     {% csrf_token %}
     <select class="custom-select" name="dropdown">
       <option selected>Choose Category</option>
@@ -39,19 +39,20 @@
       <p>{{instance.like.count}}<a href='{{instance.get_like_url}}'>like</a></p> 
       <p>{{public.count}} Comment</p>
         {%  for b in comments %}
-
+       {% ifequal i.id b.on_post.id %}
+         
         
-          <p>{{b.public_comment}}  <span>{{b.by}}</span></p>
-        
+          <p>{{b.comment}}  <span> by {{b.by}}</span></p>
+         {% endifequal %}
           {% endfor %}
           
           
           
         
       
+      
 
-
-      <form method='Post', action="">
+      <form method='Post', action="{% url 'comment' i.pk %}">
 
         {% csrf_token %}
         <div class="input-group" style="margin-top: 2rem; margin-bottom: 2rem;">
