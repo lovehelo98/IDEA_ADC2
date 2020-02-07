@@ -45,6 +45,15 @@
       </form>
     </div>
   </div>
+  <div id='paginator'>
+      {{i.has_previous}}
+
+      {{i.number}}
+      {i.paginator.count}
+  </div>
+
+
+
   {% endfor %}
   {% else %}
   <div class="container">

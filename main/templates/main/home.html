@@ -31,14 +31,24 @@
       <p class="card-text">{{i.Post_idea}}</p>
       <a href="{% url 'delete_idea' i.pk %}" class="card-link">Delete</a>
       <a href="{% url 'edit_idea' i.pk %}" class="card-link">Edit</a>
-      <p>{{instance.like.count}}<a href='{{instance.get_like_url}}'>like</a></p>
-      <p>{{public.count}} Comment</p>
-      {%  for b in comments %}
-      {% ifequal i.id b.on_post.id %}
-      <p>{{b.comment}} <span> by {{b.by}}</span></p>
-      {% endifequal %}
-      {% endfor %}
-      <form method='Post' , action="{% url 'comment' i.pk %}">
+      <p>{{instance.like.count}}<a href='{{instance.get_like_url}}'>like</a></p> 
+    
+        {%  for b in comments %}
+       {% ifequal i.id b.on_post.id %}
+        <p>{{b.by}}  {{b.comment}}</p>
+        
+       
+       {% endifequal %}
+        {% endfor %}
+          
+          
+          
+        
+      
+      
+
+      <form method='Post', action="{% url 'comment' i.pk %}">
+
         {% csrf_token %}
         <div class="input-group" style="margin-top: 2rem; margin-bottom: 2rem;">
           <textarea class="form-control" aria-label="With textarea" name="comment" placeholder='comment'></textarea>
@@ -58,5 +68,35 @@
     </div>
   </div>
   {% endif %}
+  <div id='paginator'>
+      {% if ideas.has_previous %}
+      <a href="?page={{ideas.previous_page_number}}"> << </a>
+
+      {%endif%}
+
+
+    {%for num in ideas.paginator.page_range%}
+    {% if ideas.number == num %}
+
+     <span id="pag_number"> 
+
+        <strong>{{num}}</strong>
+
+        {% elif num > ideas.number|add:'-2'  and num < ideas.number|add:'2'%}
+        
+        <span id='subnumber'>
+          <a href="?page={{num}}">{{num}}</a>
+        </span>
+        
+        {%endif%}
+     </span>
+     
+
+    {%endfor%} 
+    {% if ideas.has_next %}
+      <a href="?page={{ideas.next_page_number}}"> >> </a>
+
+      {%endif%} 
+</div>
 </div>
 {% endblock %}

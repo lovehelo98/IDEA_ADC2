@@ -62,3 +62,54 @@ footer #copy:hover{
   background-color:lightgrey !important;
   
 }
+
+#comment_area{
+  background-color:white;
+  border-radius:30px;
+  
+}
+#comment_part{
+  margin-left:20px;
+
+}
+#paginator{
+  text-align:center;
+}
+#pag_number{
+  background-color:green;
+  font-size:50px;
+  margin-left:10px;
+  border-radius:10px;
+  color:white;
+  padding:4px;
+  text-align:center;
+  
+}
+
+#pag_number:hover{
+  background-color:lightgrey;
+  transition:all 0.003 ease;
+  color:green;
+  cursor:pointer;
+}
+#subnumber{
+  background-color:green;
+  font-size:50px;
+  margin-left:10px;
+  border-radius:10px;
+  color:pink;
+  text-decoration:none;
+  padding:4px;
+}
+#subnumber:hover{
+  background-color:lightgrey;
+  cursor:pointer;
+  
+}
+#subnumber a{
+  text-decoration:none;
+  color:orchid;
+}
+#subnumber a:hover{
+  color:green;
+}
