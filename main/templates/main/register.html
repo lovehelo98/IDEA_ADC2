@@ -1,20 +1,17 @@
 {% extends 'main/header.html' %}
-
-
-
 {% block content %}
 {% load crispy_forms_tags %}
-    <div Style="margin-left:750px;">
-        <h2>   Create A free account </h2>
-        <div >
-            <form method="POST">
-                {% csrf_token %}
-                {{form|crispy}}
-                {{ profile_form|crispy}}
-                
-                <button type="Submit" class="btn btn-primary">Signup</button>
-            </form>
-        </div>
+<div Style="margin-left:750px;">
+    <h2> Create A free account </h2>
+    <div>
+        <form method="POST">
+            {% csrf_token %}
+            {{form|crispy}}
+            {{ profile_form|crispy}}
+
+            <button type="Submit" class="btn btn-primary">Signup</button>
+        </form>
     </div>
+</div>
 
 {% endblock %}

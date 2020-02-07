@@ -12,9 +12,12 @@ from django.views.decorators.csrf import csrf_exempt
 from .decorators import unauthenticated_user, admin_only, allowed_users
 from datetime import datetime
 from django.views.generic import RedirectView
+from django.contrib.auth.models import Group
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
+@login_required(login_url='login')
 def homepage(request):
     i = idea.objects.all()
     b = Public.objects.all()
@@ -23,7 +26,7 @@ def homepage(request):
         query = request.GET['q']
         i = get_data_queryset(str(query))
 
-    return render(request, "main/home.html", context={"ideas": i, "comments":b})
+    return render(request, "main/home.html", context={"ideas": i, "comments": b})
 
 
 def profile(request):
@@ -56,7 +59,7 @@ def register(request):
 
 def logout_request(request):
     logout(request)
-    return redirect("/login")
+    return redirect("/")
 
 
 @unauthenticated_user
@@ -138,18 +141,15 @@ def update_data_json(request, pk):
 
 def comment(request, pk):
     if request.method == "POST":
-        f = idea.objects.get(pk=pk) 
-        
+        f = idea.objects.get(pk=pk)
+
         i = request.POST.get('comment')
         u = request.user
         d = datetime.now()
-        
-        
+
         post = Public(comment=i, date_created=d, on_post=f, by=u)
         post.save()
-        
-        
-        
+
     return redirect("/home")
 
 

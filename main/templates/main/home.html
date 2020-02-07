@@ -1,12 +1,7 @@
 {% extends 'main/header.html' %}
 {% block content %}
-
-{% load crispy_forms_tags %}
-
 {% if ideas %}
-
-
-<div>
+<div style="margin-top: 2%;">
   <form method="post" , action="{% url 'insert' %}">
     {% csrf_token %}
     <select class="custom-select" name="dropdown">
@@ -26,39 +21,30 @@
   </form>
 </div>
 <div>
-
   {% for i in ideas %}
-  <div id='idealist'  >
+  <div id='idealist'>
     <div class='idea_box'>
-      <p style="font-size:13px;margin-top:-20px">{{i.ideaPeacher}} <Span style="font-size:9px;float:right;">{{i.date_created}}</Span></p>
+      <p style="font-size:13px;margin-top:-20px">{{i.ideaPeacher}} <Span
+          style="font-size:9px;float:right;">{{i.date_created}}</Span></p>
       <h5 class="card-title">{% for c in i.category.all %}
         {{c.category}}{% endfor %}</h5>
       <p class="card-text">{{i.Post_idea}}</p>
       <a href="{% url 'delete_idea' i.pk %}" class="card-link">Delete</a>
       <a href="{% url 'edit_idea' i.pk %}" class="card-link">Edit</a>
-      <p>{{instance.like.count}}<a href='{{instance.get_like_url}}'>like</a></p> 
+      <p>{{instance.like.count}}<a href='{{instance.get_like_url}}'>like</a></p>
       <p>{{public.count}} Comment</p>
-        {%  for b in comments %}
-       {% ifequal i.id b.on_post.id %}
-         
-        
-          <p>{{b.comment}}  <span> by {{b.by}}</span></p>
-         {% endifequal %}
-          {% endfor %}
-          
-          
-          
-        
-      
-      
-
-      <form method='Post', action="{% url 'comment' i.pk %}">
-
+      {%  for b in comments %}
+      {% ifequal i.id b.on_post.id %}
+      <p>{{b.comment}} <span> by {{b.by}}</span></p>
+      {% endifequal %}
+      {% endfor %}
+      <form method='Post' , action="{% url 'comment' i.pk %}">
         {% csrf_token %}
         <div class="input-group" style="margin-top: 2rem; margin-bottom: 2rem;">
           <textarea class="form-control" aria-label="With textarea" name="comment" placeholder='comment'></textarea>
         </div>
-        <button type="Submit" id='commentbtn' class="btn" style="background-color: green;border-radius:20px;font-size:9px;color:white;">Comment</button>           
+        <button type="Submit" id='commentbtn' class="btn"
+          style="background-color: green;border-radius:20px;font-size:9px;color:white;">Comment</button>
       </form>
     </div>
   </div>
@@ -68,7 +54,6 @@
     <div class="row">
       <div class="card-body">
         <h1 class="card-title"> No Result!! </h1>
-
       </div>
     </div>
   </div>

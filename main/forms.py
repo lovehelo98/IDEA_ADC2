@@ -11,12 +11,12 @@ class NewForm(UserCreationForm):
     class Meta:
         model = User
         fields = [
-             
-             'username',
-             'email', 
-             'password1', 
-             'password2'
-            ]
+
+            'username',
+            'email',
+            'password1',
+            'password2'
+        ]
 
     def save(self, commit=True):
         user = super(NewForm, self).save(commit=False)
@@ -33,5 +33,3 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ('location', 'age', 'Type')
-
-

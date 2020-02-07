@@ -1,11 +1,7 @@
 {% extends 'main/header.html' %}
 {% block content %}
-
 {% load crispy_forms_tags %}
-
 {% if ideas %}
-
-
 <div>
   <form method="post" , action="submitidea/">
     {% csrf_token %}
@@ -26,33 +22,26 @@
   </form>
 </div>
 <div>
-
   {% for i in ideas %}
   <div class="card" style="width: 18rem; margin-bottom: 2rem; margin-top: 1rem; ">
     <div class="card-body">
-      <p style="font-size:13px;margin-top:-20px"><a href="/profile">{{i.ideaPeacher}} </a><Span style="font-size:9px;float:right;">{{i.date_created}}</Span></p>
+      <p style="font-size:13px;margin-top:-20px"><a href="/profile">{{i.ideaPeacher}} </a><Span
+          style="font-size:9px;float:right;">{{i.date_created}}</Span></p>
       <h5 class="card-title">{% for c in i.category.all %}
         {{c.category}}{% endfor %}</h5>
       <p class="card-text">{{i.Post_idea}}</p>
-      <p>{{instance.like.count}}<a href='{{instance.get_like_url}}'>like</a></p> 
+      <p>{{instance.like.count}}<a href='{{instance.get_like_url}}'>like</a></p>
       <p>{{public.count}} Comment</p>
-        {%  for b in comments %}
-
-        
-          <p>{{b.public_comment}}  <span>{{b.by}}</span></p>
-        
-          {% endfor %}
-          
-          
-          
-        
-      
-      <form method='Post', action='submitcomment/'>
+      {%  for b in comments %}
+      <p>{{b.public_comment}} <span>{{b.by}}</span></p>
+      {% endfor %}
+      <form method='Post' , action='submitcomment/'>
         {% csrf_token %}
         <div class="input-group" style="margin-top: 2rem; margin-bottom: 2rem;">
           <textarea class="form-control" aria-label="With textarea" name="comment" placeholder='comment'></textarea>
         </div>
-        <button type="Submit" id='commentbtn' class="btn" style="background-color: green;border-radius:20px;font-size:9px;color:white;">Comment</button>           
+        <button type="Submit" id='commentbtn' class="btn"
+          style="background-color: green;border-radius:20px;font-size:9px;color:white;">Comment</button>
       </form>
     </div>
   </div>
@@ -62,7 +51,6 @@
     <div class="row">
       <div class="card-body">
         <h1 class="card-title"> No Result!! </h1>
-
       </div>
     </div>
   </div>
