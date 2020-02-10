@@ -1,0 +1,52 @@
+{% extends 'images/header.html' %}
+{% block content %}
+
+{% if ideas %}
+<div>
+  {% for i in ideas %}
+  <div id='idealist' style="margin-top: 2rem;">
+    <div class='idea_box'>
+      <p style="font-size:15px;margin-top:-20px">User: {{i.peacher.user}} <Span
+          style="font-size:20px;float:right;">{{i.date_created}}</Span></p>
+      <h5 class="card-title">{% for c in i.category.all %}
+        {{c.category}}{% endfor %}</h5>
+      <p class="card-text">{{i.Post_idea}}</p>
+      <a href="{{i.pdf.url}}">Download</a>
+      {%  for b in comments %}
+      {% ifequal i.id b.on_post.id %}
+      <div>Comments:<div>
+          <p>{{b.by}}: {{b.comment}}</p>
+
+
+          {% endifequal %}
+          {% endfor %}
+
+
+
+
+
+
+
+          <form method='Post' , action="{% url 'comment' i.pk %}">
+
+            {% csrf_token %}
+            <div class="input-group" style="margin-top: 2rem; margin-bottom: 2rem;">
+              <textarea class="form-control" aria-label="With textarea" name="comment" placeholder='comment'></textarea>
+            </div>
+            <button type="Submit" id='commentbtn' class="btn"
+              style="background-color: green;border-radius:20px;font-size:9px;color:white;">Comment</button>
+          </form>
+        </div>
+      </div>
+      {% endfor %}
+      {% else %}
+      <div class="container">
+        <div class="row">
+          <div class="card-body">
+            <h1 class="card-title"> No Result!! </h1>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+    {% endblock %}

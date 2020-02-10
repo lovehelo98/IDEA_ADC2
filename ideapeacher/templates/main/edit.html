@@ -1,0 +1,14 @@
+{% extends 'main/header.html' %}
+{% block content %}
+<form method="post" action="{% url 'updateidea' share.pk %}">
+  {% csrf_token %}
+  <div class="input-group" style="margin-top: 2rem;">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Idea</span>
+    </div>
+    <textarea class="form-control" aria-label="With textarea" name="idea">{{share.Post_idea}}</textarea>
+    <button type="submit" class="btn btn-success">Update</button>
+  </div>
+</form>
+
+{% endblock %}

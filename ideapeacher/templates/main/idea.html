@@ -1,0 +1,22 @@
+{% extends 'main/header.html' %}
+{% block content %}
+<form method="post" , action="{% url 'submitidea' %}" , enctype="multipart/form-data">
+  {% csrf_token %}
+  <select class="custom-select" name="dropdown">
+    <option selected>Choose Category</option>
+    <option value="Technology">Technology</option>
+    <option value="Transport">Transport</option>
+    <option value="Vehicle">Vehicle</option>
+    <option value="Health">Health</option>
+  </select>
+  <div class="input-group" style="margin-top: 2rem; margin-bottom: 2rem;">
+    <div class="input-group-prepend">
+      <span class="input-group-text">Idea</span>
+    </div>
+    <textarea class="form-control" aria-label="With textarea" name="idea"></textarea>
+  </div>
+  <input type='file' name='pdf' required>
+  <button type="Submit" class="btn btn-primary">Submit</button>
+</form>
+
+{% endblock %}

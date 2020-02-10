@@ -1,0 +1,64 @@
+{% extends 'main/header.html' %}
+{% block content %}
+
+{% if ideas %}
+<div>
+  {% for i in ideas %}
+  <div id='idealist' style="margin-top: 3rem;">
+    <div class='idea_box'>
+      <p style="font-size:15px;margin-top:-20px">User: {{i.peacher.user}} <Span
+          style="font-size:20px;float:right;">{{i.date_created}}</Span></p>
+      <h5 class="card-title">{% for c in i.category.all %}
+        {{c.category}}{% endfor %}<Span style="font-size:20px;float:right;">{% ifequal i.peacher.user.id user.id %}
+          <div>
+            <a href="{% url 'edit_idea' i.pk %}" class="card-link"><button class="btn btn-primary">Edit</button></a>
+            <a href="{% url 'delete_idea' i.pk %}" class="card-link"><button class="btn btn-primary">Delete</button></a>
+          </div>
+          {% endifequal %}</Span></h5>
+      <p class="card-text">{{i.Post_idea}}</p>
+
+      <a href="{{i.pdf.url}}">Download</a>
+
+
+
+      <div>Comments:</div>
+      {%  for b in comments %}
+
+      {% ifequal i.id b.on_post.id %}
+
+      <p>{{b.by}}: {{b.comment}}</p>
+
+      {% endifequal %}
+      {% endfor %}
+
+
+
+
+
+
+
+      <form method='Post' , action="{% url 'comment' i.pk %}">
+
+        {% csrf_token %}
+        <div class="input-group" style="margin-top: 2rem; margin-bottom: 2rem;">
+          <textarea class="form-control" aria-label="With textarea" name="comment" placeholder='comment'></textarea>
+        </div>
+        <button type="Submit" id='commentbtn' class="btn"
+          style="background-color: green;border-radius:20px;font-size:9px;color:white;">Comment</button>
+      </form>
+
+
+
+    </div>
+    {% endfor %}
+    {% else %}
+    <div class="container">
+      <div class="row">
+        <div class="card-body">
+          <h1 class="card-title"> No Result!! </h1>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+  {% endblock %}
